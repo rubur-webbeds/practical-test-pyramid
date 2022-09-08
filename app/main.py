@@ -1,11 +1,11 @@
 from fastapi import FastAPI
-from app.routers import hello, weather
+from app.routers import hello, pokemon
 from app.infra import db
 
 app = FastAPI()
 
 app.include_router(hello.router)
-app.include_router(weather.router)
+app.include_router(pokemon.router)
 
 @app.on_event("startup")
 async def database_connect():
