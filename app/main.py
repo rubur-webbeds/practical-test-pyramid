@@ -8,12 +8,12 @@ app.include_router(hello.router)
 app.include_router(pokemon.router)
 
 @app.on_event("startup")
-async def database_connect():
-    await db.connect()
+async def run_db_migration():
+    await db.run_migration()
 
 @app.on_event("shutdown")
-async def database_disconnect():
-    await db.disconnect()
+async def clean_resources():
+    await db.remove_inmemory_db()
 
 @app.get("/")
 async def root():

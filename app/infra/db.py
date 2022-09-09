@@ -7,10 +7,8 @@ database = Database(f"sqlite:///{db_name}")
 
 async def connect():
     await database.connect()
-    await run_migration()
 
-async def disconnect():
-    await database.disconnect()
+async def remove_inmemory_db():
     os.remove(db_name)
     print("db deleted")
 
